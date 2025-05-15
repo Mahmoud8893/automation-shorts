@@ -1,0 +1,8 @@
+music/*
+!music/.gitkeep
+
+temp/*
+!temp/.gitkeep
+
+output/
+node_modules/
