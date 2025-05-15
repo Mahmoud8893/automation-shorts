@@ -99,7 +99,9 @@ async function downloadVideo(url) {
 // === MAIN CYCLE ===
 async function runDownloadCycle() {
   console.log(`\n🔁 ${new Date().toLocaleTimeString()} | Query index: ${index}`);
-  const query = `${list[index]} shorts`;
+  const randomIndex = Math.floor(Math.random() * list.length);
+
+  const query = `${list[randomIndex]} shorts`;
 
   cleanPartFiles(videoDir);
 
@@ -110,16 +112,17 @@ async function runDownloadCycle() {
     await downloadVideo(url);
   }
 
+
   console.log('\n✅ Cycle complete. Run `2_merge.js` to combine content.\n');
 
   index = (index + 1) % list.length;
 }
 
-// Loop forever every 60 seconds
+// Loop forever every 20 seconds
 (async () => {
   while (true) {
     await runDownloadCycle();
-    console.log('⏱ Waiting 60 seconds...\n');
-    await sleep(60_000);
+    console.log('⏱ Waiting 20 seconds...\n');
+    await sleep(20_000);
   }
 })();
